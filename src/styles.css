@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.cursor {
+    cursor: pointer;
+}
+
+.common-field {
+    width: 90%;
+    margin: 0px 10px;
+}
+
+.container {
+    padding-top: 2px;
+}
+
+.text-success {
+    color: #D1E7DD;
+}
+
+.text-danger {
+    color: #F8D7DA;
+}

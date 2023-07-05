@@ -1,0 +1,62 @@
+<mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav mode="over">
+        <mat-toolbar color="primary">
+            
+            <span>Menú</span>
+            <span class="spacer"></span>
+            <button mat-icon-button
+                    (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+
+        </mat-toolbar>
+
+        <mat-nav-list role="list">
+            <a  *ngFor="let item of menuItem"
+                [routerLink]="[ item.path ]"
+                mat-list-item
+                (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>{{ item.icon }}</mat-icon>
+                <span>{{ item.name }}</span>
+            </a>
+        </mat-nav-list>
+
+        <button mat-button class="full-width"
+                *ngIf="(user | json) != '{}'"
+                (click)="logout()">
+            <mat-icon mat-list-icon>logout</mat-icon>
+            <span>Logout</span>
+        </button>
+        <button mat-button class="full-width"
+                *ngIf="(user | json) == '{}'"
+                (click)="login()">
+            <mat-icon mat-list-icon>login</mat-icon>
+            <span>Iniciar sesión</span>
+        </button>
+
+    </mat-sidenav>
+
+    <mat-toolbar color="primary">
+        <button mat-icon-button
+                (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+            <span routerLink="/"
+                  mat-list-item
+                  class="pointer">
+                EdQr Calculator
+            </span>
+
+        <span class="spacer"></span>
+        <!-- TODO: Username -->
+        <!-- <span>{{ user?.username }}</span>
+        <button mat-icon-button class="example-icon" aria-label="Logout">
+            <mat-icon>logout</mat-icon>
+        </button> -->
+
+    </mat-toolbar>
+
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+</mat-sidenav-container>
