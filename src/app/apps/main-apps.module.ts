@@ -7,12 +7,14 @@ import { MainAppsRoutingModule } from './main-apps-routing.module';
 import { MainAppsComponent } from './main-apps.component';
 import { MaterialDesignModule } from 'src/app/design/material-design.module';
 import { HomeComponent } from './home/home.component';
+import { CalculateOperationComponent } from './calculate-operation/calculate-operation.component';
 
 
 @NgModule({
   declarations: [
     MainAppsComponent,
-    HomeComponent
+    HomeComponent,
+    CalculateOperationComponent,
   ],
   imports: [
     CommonModule,

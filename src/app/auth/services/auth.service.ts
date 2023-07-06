@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, catchError, map, of, tap } from 'rxjs';
 
@@ -22,6 +22,14 @@ export class AuthService {
     return localStorage.getItem('token') ?? '';
   }
 
+  get headers(): HttpHeaders {
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json')
+      .append('Authorization', 'Bearer ' + this.token );
+    return headers;
+  }
+
+
   constructor(
     private http: HttpClient
   ) { }
@@ -41,6 +49,21 @@ export class AuthService {
               map( resp => resp ),
               catchError( err => of(err) )
             );
+  }
+
+  validateToken(): Observable<boolean> {
+
+    const url = `${ this.baseUrl }/auth/check-status`;
+    const headers = this.headers;
+
+    return this.http.get<AuthResponse>( url, { headers } )
+              .pipe(
+                map( resp => {
+                  this.saveToken( resp );
+                  return true;
+                }),
+                catchError( err => of(false) )
+              );
   }
 
   logout(): void {

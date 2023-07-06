@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-// import { ValidarTokenGuard } from '../../auth/guard/validar-token.guard';
+import { ValidateTokenGuard } from 'src/app/auth/guard/validate-token.guard';
 
-// import { OperationComponent } from '../operation/operation.component';
 import { HomeComponent } from '../home/home.component';
+import { CalculateOperationComponent } from '../calculate-operation/calculate-operation.component';
 
 const childRoutes: Routes = [
   { path: '', component: HomeComponent },
-/*   { 
-    path: 'calculate-operation', component: OperationComponent,
-    canActivate: [ ValidarTokenGuard ],
-    canLoad: [ ValidarTokenGuard ],
-  }, */
+  { 
+    path: 'calculate-operation', component: CalculateOperationComponent,
+    canActivate: [ ValidateTokenGuard ],
+    canLoad: [ ValidateTokenGuard ],
+  },
   { path: 'home', component: HomeComponent }
 
 ]

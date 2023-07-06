@@ -38,7 +38,7 @@ export class MainAppsComponent implements OnInit {
   ) {
   
     this.menuItem = [
-      { name: 'New operation', path: 'new-operation', icon: 'add' },
+      { name: 'Calculate operation', path: 'calculate-operation', icon: 'add' },
       { name: 'Search record', path: 'home', icon: 'search' },
     ];
  
