@@ -5,3 +5,10 @@
 .pointer {
   cursor: pointer;
 }
+
+#new-operation{
+  right: 20px;
+  bottom: 24px;
+  left: auto;
+  position: fixed;
+}

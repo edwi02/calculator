@@ -7,8 +7,6 @@ const childRoutes: Routes = [
   {
       path: '',
       component: MainAppsComponent,
-      // canActivate: [ ValidarTokenGuard ],
-      // canLoad: [ ValidarTokenGuard ],
       loadChildren: () => import('./routes/child-routes.module').then( m => m.ChildRoutesModule )
   }
 ]

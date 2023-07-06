@@ -19,16 +19,16 @@ export class MainAppsComponent implements OnInit {
   @ViewChild('sidenav')
   sidenav!: MatSidenav;
 
+  public menuItem: MenuItem[] = [];
+  public title: string = 'Calculator EdQr';
+
   get user(): User | null {
     let userData = null;
     this.authService.user.subscribe( res => {
       userData = res;
     });
-    // return (Object.keys(userData).length === 0) ? null: userData;
     return userData ?? null;
   }
-
-  public menuItem: MenuItem[] = [];
 
   constructor(
     private authService: AuthService,
@@ -41,11 +41,7 @@ export class MainAppsComponent implements OnInit {
       { name: 'New operation', path: 'new-operation', icon: 'add' },
       { name: 'Search record', path: 'home', icon: 'search' },
     ];
-
-    console.log(this.user);
-    
-
-  
+ 
   }
 
   ngOnInit(): void { /* TODO document why this method 'ngOnInit' is empty */  }
