@@ -1,1 +1,44 @@
-<p>calculate-operation works!</p>
+<div class="container">
+
+    <h2>
+        <small>Execute Operations</small>
+        <span class="balance ">
+            Balance: {{ balance | currency }}
+        </span>
+    </h2>
+</div>
+
+<div class="container">
+    <form [formGroup]="calculatorForm" autocomplete="off">
+        <h3>
+            ¿What calculator would you like?
+        </h3>
+    
+        <mat-form-field class="common-field">
+            <mat-label>Operation type</mat-label>
+            <mat-select formControlName="operationType" required>
+                <mat-option *ngFor="let operationType of operationTypes" 
+                    [value]="operationType">
+                    {{ operationType.type }}
+                </mat-option>
+            </mat-select>        
+            <mat-error class="form-text text-danger"
+                *ngIf="fieldNotValid( calculatorForm, 'operationType')">
+                Selecciona una categoría
+            </mat-error>
+        </mat-form-field>
+    </form>
+</div>
+<div class="container">
+    <app-basic 
+        *ngIf="basicOperation.indexOf(calculatorForm.value.operationType['type']) > -1"
+        [operationType]="calculatorForm.value.operationType['type']"
+        (isCompleted)="refreshBalance($event)"
+    ></app-basic>
+    <app-square-root
+        *ngIf="calculatorForm.value.operationType['type'] === 'square_root'"
+    ></app-square-root>
+    <app-random-string
+        *ngIf="calculatorForm.value.operationType['type'] === 'random_string'"
+    ></app-random-string>
+</div>

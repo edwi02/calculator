@@ -14,8 +14,8 @@ export class AuthService {
   private baseUrl = environment.baseUrl;
   private _user!: User;
 
-  get user(): Observable<User> {
-    return of({ ...this._user});
+  get user(): User {
+    return { ...this._user};
   }
 
   get token(): string {

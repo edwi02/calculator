@@ -1,0 +1,24 @@
+<form [formGroup]="basicForm" autocomplete="off">
+      <p>
+        <em>Enter numbers to calculate: {{ operationType }}</em>
+      </p>
+      <mat-form-field class="common-field">
+        <mat-chip-list #chipGrid aria-label="Enter number"  >
+          <mat-chip *ngFor="let oneNumber of numberList" (removed)="removeOneNumber(oneNumber)">
+            {{oneNumber}}
+            <button matChipRemove aria-label="'remove ' + keyword">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+        </mat-chip-list>
+        <input placeholder="Add numbers"
+              type="number"
+              [matChipInputFor]="chipGrid"
+              (matChipInputTokenEnd)="add($event)"/>
+      </mat-form-field>
+
+      <button mat-raised-button 
+        color="primary"
+        (click)="executeCalculate()"
+        >Calculate</button>
+</form>

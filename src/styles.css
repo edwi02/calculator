@@ -13,7 +13,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .container {
-    padding-top: 2px;
+    padding: 0.5em;
 }
 
 .text-success {

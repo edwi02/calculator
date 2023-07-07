@@ -22,12 +22,8 @@ export class MainAppsComponent implements OnInit {
   public menuItem: MenuItem[] = [];
   public title: string = 'Calculator EdQr';
 
-  get user(): User | null {
-    let userData = null;
-    this.authService.user.subscribe( res => {
-      userData = res;
-    });
-    return userData ?? null;
+  get user(): User {
+    return this.authService.user;
   }
 
   constructor(
