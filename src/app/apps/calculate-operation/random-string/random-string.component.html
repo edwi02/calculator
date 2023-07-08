@@ -1,1 +1,32 @@
-<p>random-string works!</p>
+<form [formGroup]="randomStringForm" autocomplete="off">
+    <p>
+      <em>Enter numbers to calculate: {{ operationType }}</em>
+    </p>
+    <mat-form-field class="common-field">
+      <input matInput 
+        placeholder="Quantity of strings" 
+        formControlName="quantity"
+        type="number"/>
+        <mat-error class="form-text text-danger"
+                *ngIf="fieldNotValid( randomStringForm, 'quantity')">
+                {{ quantityErrorMsg }}
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="common-field">
+        <input matInput 
+          placeholder="Length" 
+          formControlName="length"
+          type="number"/>
+          <mat-error class="form-text text-danger"
+                  *ngIf="fieldNotValid( randomStringForm, 'length')">
+                  {{ lengthErrorMsg }}
+          </mat-error>
+      </mat-form-field>
+
+    <button mat-raised-button 
+      color="primary"
+      [disabled]="!randomStringForm.valid"
+      (click)="executeCalculate()"
+      >Calculate</button>
+</form>

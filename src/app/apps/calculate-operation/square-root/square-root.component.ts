@@ -37,7 +37,7 @@ export class SquareRootComponent implements OnInit {
 
   executeCalculate() {
     const { oneNumber } = this.squareRootForm.value;
-    this.calculateOperationService.executeSquareRoot(Number(oneNumber), this.operationType)
+    this.calculateOperationService.executeSquareRoot(Number(oneNumber))
           .subscribe( 
             resp => {
               this.result = resp.result;

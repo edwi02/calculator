@@ -15,12 +15,14 @@ export class ValidatorService {
   }
 
   private errorMessages = {
-    required:   () => `Field is require.`,
-    pattern:    () => `Data is not valid. Incorrect format.`,
-    notEqual:   () => `Values not equals.`,
-    minlength:  () => `Invalid minumim characters.`,
-    maxlength:  () => `Invalid maximum characters.`,
-    emailUser:  () => `Email already exits.`
+    required:   (controlErrors: any) => `Field is require.`,
+    pattern:    (controlErrors: any) => `Data is not valid. Incorrect format.`,
+    notEqual:   (controlErrors: any) => `Values not equals.`,
+    minlength:  (controlErrors: any) => `Invalid minimum characters. Required minimum ${ controlErrors.requiredLength }`,
+    maxlength:  (controlErrors: any) => `Invalid maximum characters. Required maximum ${ controlErrors.requiredLength }`,
+    max:  (controlErrors: any) => `Invalid maximum value. Minimum value allowed ${ controlErrors.max.max }`,
+    min:  (controlErrors: any) => `Invalid minumim value. Minimum value allowed ${ controlErrors.min.min }`,
+    emailUser:  (controlErrors: any) => `Email already exits.`
     
   }
 
@@ -28,30 +30,38 @@ export class ValidatorService {
     // document why this constructor is empty
   }
 
-  public commonMessage( controlErrors: any, labelName: string ): string {
-        
-    const error: any = controlErrors
-      ? Object.values(controlErrors)[0]
+  public getErrorMessage(
+    form: FormGroup,
+    controlName: string,
+    customMessage?: string
+): string {
+
+    type OnlyKeys = keyof typeof this.errorMessages;
+    
+    const controlErrors = form.get(controlName)?.errors;
+    
+    
+    const errorName: OnlyKeys = controlErrors
+      ? Object.keys(controlErrors)[0] as OnlyKeys
+      : '' as OnlyKeys;
+    
+      console.log(controlErrors);
+      
+    let message = this.errorMessages.hasOwnProperty(errorName)
+      ? this.errorMessages[errorName](controlErrors)
       : '';
 
-    if ( controlErrors?.['required'] ) {
-      return this.errorMessages.required();
+      if ( !customMessage && customMessage !== '' && message === '' ) {
+        message = customMessage!;
+      }
+    
+      if (message === '') {
+        console.log(`${errorName} not identified.`);
+      }
 
-    } else if ( controlErrors?.['pattern']) {
-      return `${ this.errorMessages.pattern() }. Incorrect format ${ labelName }.`;
-
-    } else if ( controlErrors?.['emailUsed'] ) {
-      return this.errorMessages.emailUser();
-
-    } else if ( controlErrors?.['minlength']) {
-      return `${ this.errorMessages.minlength() }. Required characters: ${ error.requiredLength }`;
-
-    } else if ( controlErrors?.['maxlength']) {
-      return `${ this.errorMessages.maxlength() }. Maximum allowed: ${ error.requiredLength }`;
-
-    }
-    return '';
-  }
+    return message;
+    
+}
 
   public emailErrorMsg(formName: FormGroup, formControlName: string): string {
     
@@ -59,19 +69,27 @@ export class ValidatorService {
     
     if ( errors?.['required'] ) {
       return 'Username is require';
-    } else if ( errors?.['pattern']) {
+    } 
+    
+    if ( errors?.['pattern']) {
       return 'Username is not email valid';
     }
+
     return '';
   }
 
   public passwordErrorMsg(formName: FormGroup, formControlName: string): string {
+
     const errors = formName.get(formControlName)?.errors;
+
     if ( errors?.['required']) {
       return 'Password is require';
-    } else if ( errors?.['minlength'] ) {
+    } 
+    
+    if ( errors?.['minlength'] ) {
       return 'Invalid minumim characters. Minimum allowed: ' + errors?.['minlength'].requiredLength;
     }
+
     return '';
   }
 

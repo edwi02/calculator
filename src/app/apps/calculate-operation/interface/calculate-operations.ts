@@ -1,3 +1,6 @@
 export interface CalculateResult {
-    result: string
+    result: string;
+}
+export interface RandomStringResult {
+    result: string[];
 }

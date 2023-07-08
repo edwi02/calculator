@@ -42,5 +42,7 @@
     ></app-square-root>
     <app-random-string
         *ngIf="calculatorForm.value.operationType['type'] === 'random_string'"
+        [operationType]="'random-string'"
+        (isCompleted)="refreshBalance($event)"
     ></app-random-string>
 </div>
