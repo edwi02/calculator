@@ -1,3 +1,3 @@
-export interface BasicResult {
+export interface CalculateResult {
     result: string
 }

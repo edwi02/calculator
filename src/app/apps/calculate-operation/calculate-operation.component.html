@@ -24,7 +24,7 @@
             </mat-select>        
             <mat-error class="form-text text-danger"
                 *ngIf="fieldNotValid( calculatorForm, 'operationType')">
-                Selecciona una categoría
+                Select a Operation type
             </mat-error>
         </mat-form-field>
     </form>
@@ -37,6 +37,8 @@
     ></app-basic>
     <app-square-root
         *ngIf="calculatorForm.value.operationType['type'] === 'square_root'"
+        [operationType]="'square-root'"
+        (isCompleted)="refreshBalance($event)"
     ></app-square-root>
     <app-random-string
         *ngIf="calculatorForm.value.operationType['type'] === 'random_string'"

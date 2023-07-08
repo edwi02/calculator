@@ -1,1 +1,19 @@
-<p>square-root works!</p>
+<form [formGroup]="squareRootForm" autocomplete="off">
+    <p>
+      <em>Enter numbers to calculate: {{ operationType }}</em>
+    </p>
+    <mat-form-field class="common-field">
+      <input matInput 
+        placeholder="Enter a number" 
+        formControlName="oneNumber"
+        type="number"/>
+        <mat-error class="form-text text-danger"
+                *ngIf="fieldNotValid( squareRootForm, 'oneNumber')">
+        </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button 
+      color="primary"
+      (click)="executeCalculate()"
+      >Calculate</button>
+</form>

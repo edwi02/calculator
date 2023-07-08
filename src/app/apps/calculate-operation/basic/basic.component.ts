@@ -37,7 +37,7 @@ export class BasicComponent implements OnInit {
 
   executeCalculate() {
     const numbers = this.getNumberArray();
-    this.calculateOperationService.executeOperation(numbers, this.operationType)
+    this.calculateOperationService.executeBasicOperation(numbers, this.operationType)
           .subscribe( 
             resp => {
               this.result = resp.result;
