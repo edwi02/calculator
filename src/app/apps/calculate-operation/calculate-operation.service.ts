@@ -23,9 +23,7 @@ export class CalculateOperationService {
 
   executeBasicOperation(numbers: number[], nameOperation: string): Observable<CalculateResult> {
 
-    const url  = `${ this.baseUrl }/${nameOperation}`;
-    console.log(url);
-    
+    const url  = `${ this.baseUrl }/${nameOperation}`;   
     const body = {numbers};
 
     return this.http.post<CalculateResult>( url, body, {headers: this.headers} )

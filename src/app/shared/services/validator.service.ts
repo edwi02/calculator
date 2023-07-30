@@ -44,8 +44,6 @@ export class ValidatorService {
     const errorName: OnlyKeys = controlErrors
       ? Object.keys(controlErrors)[0] as OnlyKeys
       : '' as OnlyKeys;
-    
-      console.log(controlErrors);
       
     let message = this.errorMessages.hasOwnProperty(errorName)
       ? this.errorMessages[errorName](controlErrors)

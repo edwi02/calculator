@@ -11,6 +11,7 @@ import { CalculateOperationComponent } from './calculate-operation/calculate-ope
 import { BasicComponent } from './calculate-operation/basic/basic.component';
 import { SquareRootComponent } from './calculate-operation/square-root/square-root.component';
 import { RandomStringComponent } from './calculate-operation/random-string/random-string.component';
+import { TableRecordComponent } from './table-record/table-record.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { RandomStringComponent } from './calculate-operation/random-string/rando
     BasicComponent,
     SquareRootComponent,
     RandomStringComponent,
+    TableRecordComponent,
   ],
   imports: [
     CommonModule,

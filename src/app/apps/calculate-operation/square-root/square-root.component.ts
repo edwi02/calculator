@@ -26,8 +26,15 @@ export class SquareRootComponent implements OnInit {
     private validator: ValidatorService,
   ) {
     this.squareRootForm = this.fb.group({
-      oneNumber: ['', Validators.required ],
+      oneNumber: ['', [
+        Validators.required, 
+        Validators.min(0),
+      ]],
     });
+  }
+
+  get oneNumberErrorMsg(): string {
+    return this.validator.getErrorMessage(this.squareRootForm, 'oneNumber');
   }
 
   ngOnInit(): void {

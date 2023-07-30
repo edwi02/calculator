@@ -33,11 +33,11 @@ export class LoginComponent implements OnInit {
     this.localData = { ...data };
 
     this.loginForm = this.fb.group({
-      username:    [ 'edwinqr-a@gmail.com', [
+      username:    [ '', [
         Validators.required,
         Validators.pattern(validator.emailPattern)
       ] ],
-      password: [ '3dwIn-a', [
+      password: [ '', [
         Validators.required,
         Validators.minLength(6)
        ] ]

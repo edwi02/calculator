@@ -9,11 +9,13 @@
         type="number"/>
         <mat-error class="form-text text-danger"
                 *ngIf="fieldNotValid( squareRootForm, 'oneNumber')">
+                {{ oneNumberErrorMsg }}
         </mat-error>
     </mat-form-field>
 
     <button mat-raised-button 
       color="primary"
+      [disabled]="!squareRootForm.valid"
       (click)="executeCalculate()"
       >Calculate</button>
 </form>
